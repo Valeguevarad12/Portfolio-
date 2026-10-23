@@ -983,67 +983,62 @@ footer .font-mono { font-family: var(--font-mono); }
    CUSTOM CURSOR — only on hover-capable, fine-pointer devices
    ============================================ */
 
-@media (any-hover: hover) and (any-pointer: fine) {
-  a, button, .case-thumb, .pill-link {
-    cursor: none;
-  }
-
-  .custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 26px;
-    height: 31px;
-    display: flex;
-    align-items: flex-start;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0;
-    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) translate(-50%, -50%) scale(0.3);
-    transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
-    will-change: transform, opacity;
-  }
-
-  .custom-cursor.is-active {
-    opacity: 1;
-    transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) translate(-50%, -50%) scale(1);
-  }
-
-  .custom-cursor svg {
-    flex-shrink: 0;
-    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
-  }
-
-  .custom-cursor-label {
-    margin-left: 0.7rem;
-    margin-top: 0.4rem;
-    background: #517594;
-    color: #FDFCFA;
-    font-family: var(--font-sans);
-    font-weight: 500;
-    font-size: 0.75rem;
-    padding: 0.3rem 0.7rem;
-    border-radius: 100px;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-6px);
-    transition: opacity 0.15s ease, transform 0.15s ease;
-  }
-
-  .custom-cursor.is-active .custom-cursor-label {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .custom-cursor.no-label .custom-cursor-label {
-    opacity: 0 !important;
-    transform: translateX(-6px) !important;
-  }
+a, button, .case-thumb, .pill-link {
+  cursor: none;
 }
 
-@media not all and (any-hover: hover) and (any-pointer: fine) {
-  .custom-cursor { display: none; }
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 31px;
+  display: flex;
+  align-items: flex-start;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) translate(-50%, -50%) scale(0.3);
+  transition: opacity 0.15s ease, transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
 }
+
+.custom-cursor.is-active {
+  opacity: 1;
+  transform: translate(var(--cursor-x, -100px), var(--cursor-y, -100px)) translate(-50%, -50%) scale(1);
+}
+
+.custom-cursor svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+}
+
+.custom-cursor-label {
+  margin-left: 0.7rem;
+  margin-top: 0.4rem;
+  background: #517594;
+  color: #FDFCFA;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.custom-cursor.is-active .custom-cursor-label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.custom-cursor.no-label .custom-cursor-label {
+  opacity: 0 !important;
+  transform: translateX(-6px) !important;
+}
+
 
 </style>
 </head>
@@ -1795,9 +1790,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Custom cursor — follows the pointer, activates over clickable elements
   const cursor = document.getElementById('customCursor');
-  const isFinePointer = window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
-
-  if (cursor && isFinePointer) {
+  if (cursor) {
     const CLICKABLE = 'a, button, .case-thumb, [data-cursor-label], [data-cursor-color]';
     const NO_LABEL = '.island-navbar, .topbar-brand';
     const cursorLabel = cursor.querySelector('.custom-cursor-label');
@@ -1834,7 +1827,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // canvas component (same math, plain JS/canvas here).
   const heroSection = document.getElementById('hero');
   const dotCanvas = document.getElementById('heroDotGrid');
-  if (heroSection && dotCanvas && window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches) {
+  if (heroSection && dotCanvas) {
     const ctx = dotCanvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
 
