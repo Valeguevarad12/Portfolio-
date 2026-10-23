@@ -983,7 +983,7 @@ footer .font-mono { font-family: var(--font-mono); }
    CUSTOM CURSOR — only on hover-capable, fine-pointer devices
    ============================================ */
 
-@media (hover: hover) and (pointer: fine) {
+@media (any-hover: hover) and (any-pointer: fine) {
   a, button, .case-thumb, .pill-link {
     cursor: none;
   }
@@ -1041,7 +1041,7 @@ footer .font-mono { font-family: var(--font-mono); }
   }
 }
 
-@media not all and (hover: hover) and (pointer: fine) {
+@media not all and (any-hover: hover) and (any-pointer: fine) {
   .custom-cursor { display: none; }
 }
 
@@ -1795,7 +1795,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Custom cursor — follows the pointer, activates over clickable elements
   const cursor = document.getElementById('customCursor');
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const isFinePointer = window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches;
 
   if (cursor && isFinePointer) {
     const CLICKABLE = 'a, button, .case-thumb, [data-cursor-label], [data-cursor-color]';
@@ -1834,7 +1834,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // canvas component (same math, plain JS/canvas here).
   const heroSection = document.getElementById('hero');
   const dotCanvas = document.getElementById('heroDotGrid');
-  if (heroSection && dotCanvas && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  if (heroSection && dotCanvas && window.matchMedia('(any-hover: hover) and (any-pointer: fine)').matches) {
     const ctx = dotCanvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
 
